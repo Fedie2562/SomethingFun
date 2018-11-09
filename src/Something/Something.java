@@ -6,6 +6,9 @@
 
 package Something;
 
+import java.awt.Color;
+
+
 /**
  *
  * @author fedie2562
@@ -86,10 +89,14 @@ public class Something extends javax.swing.JFrame {
         @Override
         public void run(){
             int noted = 0;
-            while(go){
-                noted ++;
-                System.out.println("Running ");
-                sleeper(100);
+            int u = 5;
+            while(go)
+            {
+                u *= (noted > 249 && u > 0) || (u < 0 && noted < 1) ? -1 : 1;
+                noted += u;
+                Color cc = new Color(noted, 0, 255);
+                jPanel1.setBackground(cc);
+                sleeper(50);
             }
         }
     }
