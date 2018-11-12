@@ -1,7 +1,6 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Ferris D. & Charlie H.
+ * 04/11/2018
  */
 
 package Something;
@@ -33,6 +32,8 @@ public class Something extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         runningToggle = new javax.swing.JToggleButton();
+        jLabel1 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(0, 0, 255));
@@ -47,20 +48,40 @@ public class Something extends javax.swing.JFrame {
             }
         });
 
+        jLabel1.setFont(new java.awt.Font("Three Arrows", 1, 48)); // NOI18N
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("STUFF");
+
+        jButton1.setText("Menu");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(333, Short.MAX_VALUE)
-                .addComponent(runningToggle)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jButton1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(runningToggle))
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 380, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(266, Short.MAX_VALUE)
-                .addComponent(runningToggle)
+                .addContainerGap()
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 105, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(runningToggle)
+                    .addComponent(jButton1))
                 .addContainerGap())
         );
 
@@ -83,21 +104,42 @@ public class Something extends javax.swing.JFrame {
         go = !go;
         AltThread zoom = new AltThread();
         zoom.start();
-        System.out.println(go);
+        if(go){
+            System.out.println("on");
+            runningToggle.setText("Stop");
+        }
+        else{
+            System.out.println("off");
+            runningToggle.setText("Start");
+        }
     }//GEN-LAST:event_runningToggleActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        go = false;
+    }//GEN-LAST:event_jButton1ActionPerformed
     public class AltThread extends Thread{
         @Override
         public void run(){
-            int noted = 0;
-            int u = 5;
+            int noted1=0, noted2=200, noted3=50;
+            int u1=5,u2=5,u3=5;
             while(go)
             {
-                u *= (noted > 249 && u > 0) || (u < 0 && noted < 1) ? -1 : 1;
-                noted += u;
-                Color cc = new Color(noted, 0, 255);
+                u1 *= (noted1 > 249 && u1 > 0) || (u1 < 0 && noted1 < 1) ? -1 : 1;
+                u2 *= (noted2 > 249 && u2 > 0) || (u2 < 0 && noted2 < 1) ? -1 : 1;
+                u3 *= (noted3 > 249 && u3 > 0) || (u3 < 0 && noted3 < 1) ? -1 : 1;
+                noted1 += u1;
+                noted2 += u2;
+                noted3 += u3;
+                Color cc = new Color(noted1, noted2, noted3);
+                Color vv = new Color(noted1, noted3, noted3);
+                int rando = (int) (Math.random() * 9999999 + 1000);
+                jLabel1.setText(rando+rando+"");
+                jLabel1.setForeground(vv);
                 jPanel1.setBackground(cc);
                 sleeper(50);
             }
+            
         }
     }
     public void sleeper(int millis){
@@ -142,6 +184,8 @@ public class Something extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JToggleButton runningToggle;
     // End of variables declaration//GEN-END:variables
