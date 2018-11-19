@@ -1,11 +1,12 @@
 /*
- * Ferris D. & Charlie H.
+ * Ferris D.
  * 04/11/2018
  */
 
 package Something;
 
 import java.awt.Color;
+import javax.swing.JOptionPane;
 
 
 /**
@@ -106,6 +107,7 @@ public class Something extends javax.swing.JFrame {
         zoom.start();
         if(go){
             System.out.println("on");
+            JOptionPane.showMessageDialog(null, "");
             runningToggle.setText("Stop");
         }
         else{
