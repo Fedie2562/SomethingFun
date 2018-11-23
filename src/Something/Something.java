@@ -6,6 +6,8 @@
 package Something;
 
 import java.awt.Color;
+import javax.swing.JDialog;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 
@@ -107,7 +109,6 @@ public class Something extends javax.swing.JFrame {
         zoom.start();
         if(go){
             System.out.println("on");
-            JOptionPane.showMessageDialog(null, "");
             runningToggle.setText("Stop");
         }
         else{
