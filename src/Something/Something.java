@@ -6,6 +6,7 @@
 package Something;
 
 import java.awt.Color;
+import javax.swing.text.DefaultCaret;
 
 
 /**
@@ -14,7 +15,9 @@ import java.awt.Color;
  */
 public class Something extends javax.swing.JFrame {
     
+    boolean goM = false;
     boolean go = false;
+    String output = "";
     int noted1=0, noted2=200, noted3=50;
     int u1=5,u2=5,u3=5;
     /**
@@ -153,11 +156,41 @@ public class Something extends javax.swing.JFrame {
     }//GEN-LAST:event_runningToggleActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        // 
         go = false;
         jPanel1.setVisible(go);
         jPanel2.setVisible(true);
+        goM = !goM;
+        MThread mTred = new MThread();
+        mTred.start();
+        if(goM){
+            System.out.println("on");
+            runningToggle.setText("Stop");
+        }
+        else{
+            System.out.println("off");
+            runningToggle.setText("Start");
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
+    public class MThread extends Thread{
+        @Override
+        public void run(){
+            DefaultCaret caret = (DefaultCaret)outputField.getCaret();
+            caret.setUpdatePolicy(DefaultCaret.OUT_BOTTOM);
+            int counter = 0;
+            while(goM){
+                if(counter < 48){
+                    counter++;
+                }else if(counter >= 48){
+                    counter = 0;
+                    output += "\n";
+                }
+                output += "" + (int) (Math.random() * 9 + 1);
+                outputField.setText(output);
+                sleeper(50);
+            }
+        }
+    }
     public class AltThread extends Thread{
         @Override
         public void run(){
