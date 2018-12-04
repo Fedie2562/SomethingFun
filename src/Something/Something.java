@@ -20,6 +20,8 @@ public class Something extends javax.swing.JFrame {
     String output = "";
     int noted1=0, noted2=200, noted3=50;
     int u1=5,u2=5,u3=5;
+    int n1=(int)(Math.random()*5),n2=1,n3=1;
+    int moted1=(int)(Math.random()*250+1),moted2=(int)(Math.random()*250+1),moted3=(int)(Math.random()*255+50);
     /**
      * Creates new form Something
      */
@@ -98,8 +100,8 @@ public class Something extends javax.swing.JFrame {
         jPanel2.setEnabled(false);
         jPanel2.setOpaque(false);
 
-        outputField.setEditable(false);
         outputField.setColumns(20);
+        outputField.setForeground(new java.awt.Color(100, 0, 0));
         outputField.setRows(5);
         jScrollPane1.setViewportView(outputField);
 
@@ -175,6 +177,7 @@ public class Something extends javax.swing.JFrame {
         jPanel1.setVisible(go);
         jPanel2.setVisible(true);
         goM = !goM;
+        System.out.println(moted1+" "+moted2+" "+moted3);
         MThread mTred = new MThread();
         mTred.start();
         if(goM){
@@ -203,9 +206,17 @@ public class Something extends javax.swing.JFrame {
             caret.setUpdatePolicy(DefaultCaret.OUT_BOTTOM);
             int counter = 0;
             while(goM){
-                if(counter < 48){
+                n1 *= (moted1 > 249 && n1 > 0) || (n1 < 0 && moted1 < 1) ? -1 : 1;
+                n2 *= (moted2 > 249 && n2 > 0) || (n2 < 0 && moted2 < 1) ? -1 : 1;
+                n3 *= (moted3 > 249 && n3 > 0) || (n3 < 0 && moted3 < 1) ? -1 : 1;
+                moted1 += n1;
+                moted2 += n2;
+                moted3 += n3;
+                Color nn = new Color(moted1, moted2, moted3);
+                outputField.setForeground(nn);
+                if(counter < 47){
                     counter++;
-                }else if(counter >= 48){
+                }else if(counter >= 47){
                     counter = 0;
                     output += "\n";
                 }
