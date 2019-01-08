@@ -6,6 +6,8 @@
 package Something;
 
 import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import javax.swing.text.DefaultCaret;
 
 
@@ -14,14 +16,23 @@ import javax.swing.text.DefaultCaret;
  * @author fedie2562
  */
 public class Something extends javax.swing.JFrame {
-    
+    // Get resolution for window bounce
+    Dimension resolution = Toolkit.getDefaultToolkit().getScreenSize();
+    int resX = (int) resolution.getWidth();
+    int resY = (int) resolution.getHeight();
+    int locX = 0, locY = 0;
     boolean goM = false;
     boolean go = false;
     String output = "";
     int noted1=0, noted2=200, noted3=50;
-    int u1=5,u2=5,u3=5;
+    int u1=5,u2=5,u3=5,xx=2,yy=2;
     int n1=(int)(Math.random()*5),n2=1,n3=1;
-    int moted1=(int)(Math.random()*250+1),moted2=(int)(Math.random()*250+1),moted3=(int)(Math.random()*255+50);
+    int moted1=(int)(Math.random()*249+1),moted2=(int)(Math.random()*249+1),moted3=(int)(Math.random()*249+1);
+    //
+    @Override
+    public void setLocation(int i, int i1) {
+        super.setLocation(i, i1); //To change body of generated methods, choose Tools | Templates.
+    }
     /**
      * Creates new form Something
      */
@@ -148,7 +159,7 @@ public class Something extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 344, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -206,9 +217,9 @@ public class Something extends javax.swing.JFrame {
             caret.setUpdatePolicy(DefaultCaret.OUT_BOTTOM);
             int counter = 0;
             while(goM){
-                n1 *= (moted1 > 249 && n1 > 0) || (n1 < 0 && moted1 < 1) ? -1 : 1;
-                n2 *= (moted2 > 249 && n2 > 0) || (n2 < 0 && moted2 < 1) ? -1 : 1;
-                n3 *= (moted3 > 249 && n3 > 0) || (n3 < 0 && moted3 < 1) ? -1 : 1;
+                n1 *= (moted1 > 249 && n1 > 0) || (n1 < 0 && moted1 < 5) ? -1 : 1;
+                n2 *= (moted2 > 249 && n2 > 0) || (n2 < 0 && moted2 < 5) ? -1 : 1;
+                n3 *= (moted3 > 249 && n3 > 0) || (n3 < 0 && moted3 < 5) ? -1 : 1;
                 moted1 += n1;
                 moted2 += n2;
                 moted3 += n3;
@@ -221,6 +232,7 @@ public class Something extends javax.swing.JFrame {
                     output += "\n";
                 }
                 output += "" + (int) (Math.random() * 10);
+                System.out.println(moted1+ " " + moted2 + " " + moted3);
                 outputField.setText(output);
                 sleeper(10);
             }
@@ -234,6 +246,10 @@ public class Something extends javax.swing.JFrame {
                 u1 *= (noted1 > 249 && u1 > 0) || (u1 < 0 && noted1 < 1) ? -1 : 1;
                 u2 *= (noted2 > 249 && u2 > 0) || (u2 < 0 && noted2 < 1) ? -1 : 1;
                 u3 *= (noted3 > 249 && u3 > 0) || (u3 < 0 && noted3 < 1) ? -1 : 1;
+                xx *= (locX > (resX - 379) && xx > 0) || (xx < 0 && locX < 0) ? -1 : 1;
+                yy *= (locY > (resY - 354) && yy > 0) || (yy < 0 && locY < 0) ? -1 : 1;
+                locX += xx;
+                locY += yy;
                 noted1 += u1;
                 noted2 += u2;
                 noted3 += u3;
@@ -243,6 +259,7 @@ public class Something extends javax.swing.JFrame {
                 jLabel1.setText(rando+rando+"");
                 jLabel1.setForeground(vv);
                 jPanel1.setBackground(cc);
+                setLocation(locX, locY);
                 sleeper(50);
             }
             
