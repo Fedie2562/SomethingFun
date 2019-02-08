@@ -23,6 +23,7 @@ public class Something extends javax.swing.JFrame {
     int locX = 0, locY = 0;
     boolean goM = false;
     boolean go = false;
+    boolean typeGo = false;
     String output = "";
     int noted1=0, noted2=200, noted3=50;
     int u1=5,u2=5,u3=5,xx=2,yy=2;
@@ -52,17 +53,24 @@ public class Something extends javax.swing.JFrame {
         runningToggle = new javax.swing.JToggleButton();
         jLabel1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
+        typeMode = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         outputField = new javax.swing.JTextArea();
         jButton2 = new javax.swing.JButton();
+        jPanel3 = new javax.swing.JPanel();
+        backB = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(0, 0, 255));
         setForeground(new java.awt.Color(255, 0, 51));
+        setMaximumSize(new java.awt.Dimension(400, 300));
+        setMinimumSize(new java.awt.Dimension(400, 300));
+        setPreferredSize(new java.awt.Dimension(400, 300));
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel1.setPreferredSize(new java.awt.Dimension(379, 335));
+        jPanel1.setMaximumSize(new java.awt.Dimension(400, 295));
+        jPanel1.setPreferredSize(new java.awt.Dimension(400, 295));
 
         runningToggle.setText("Start");
         runningToggle.addActionListener(new java.awt.event.ActionListener() {
@@ -82,34 +90,48 @@ public class Something extends javax.swing.JFrame {
             }
         });
 
+        typeMode.setText("Typer");
+        typeMode.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                typeModeActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(6, 6, 6)
                         .addComponent(jButton1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(runningToggle))
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 359, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(typeMode)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 197, Short.MAX_VALUE)
+                        .addComponent(runningToggle)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(69, Short.MAX_VALUE)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(69, 69, 69)
+                .addGap(43, 43, 43)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 88, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(runningToggle)
-                    .addComponent(jButton1))
+                    .addComponent(typeMode)
+                    .addComponent(jButton1)
+                    .addComponent(runningToggle))
                 .addContainerGap())
         );
 
         jPanel2.setEnabled(false);
+        jPanel2.setMaximumSize(new java.awt.Dimension(400, 300));
         jPanel2.setOpaque(false);
+        jPanel2.setPreferredSize(new java.awt.Dimension(400, 300));
 
         outputField.setColumns(20);
         outputField.setForeground(new java.awt.Color(100, 0, 0));
@@ -140,13 +162,42 @@ public class Something extends javax.swing.JFrame {
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addGap(0, 312, Short.MAX_VALUE)
+                .addGap(0, 336, Short.MAX_VALUE)
                 .addComponent(jButton2))
             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel2Layout.createSequentialGroup()
                     .addContainerGap()
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 298, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addContainerGap(26, Short.MAX_VALUE)))
+        );
+
+        jPanel3.setEnabled(false);
+        jPanel3.setMaximumSize(new java.awt.Dimension(400, 300));
+        jPanel3.setOpaque(false);
+        jPanel3.setPreferredSize(new java.awt.Dimension(400, 300));
+
+        backB.setText("Back");
+        backB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backBActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(backB)
+                .addContainerGap(314, Short.MAX_VALUE))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addContainerGap(325, Short.MAX_VALUE)
+                .addComponent(backB)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -156,12 +207,22 @@ public class Something extends javax.swing.JFrame {
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(139, 139, 139)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addContainerGap(140, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 344, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(129, 129, 129)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addContainerGap(130, Short.MAX_VALUE)))
         );
 
         pack();
@@ -209,6 +270,23 @@ public class Something extends javax.swing.JFrame {
         jPanel2.setVisible(false);
         runningToggle.setText("Start");
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void typeModeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_typeModeActionPerformed
+        // TODO add your handling code here:
+        goM = false;
+        go = false;
+        typeGo = true;
+        jPanel1.setVisible(false);
+    }//GEN-LAST:event_typeModeActionPerformed
+
+    private void backBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBActionPerformed
+        // Go back to main screen
+        typeGo = false;
+        goM = false;
+        go = false;
+        jPanel3.setVisible(false);
+        jPanel1.setVisible(true);
+    }//GEN-LAST:event_backBActionPerformed
     public class MThread extends Thread{
         @Override
         public void run(){
@@ -265,6 +343,35 @@ public class Something extends javax.swing.JFrame {
             
         }
     }
+    public class TyperThread extends Thread{
+        @Override
+        public void run(){
+            output = "";
+            DefaultCaret caret = (DefaultCaret)outputField.getCaret();
+            caret.setUpdatePolicy(DefaultCaret.OUT_BOTTOM);
+            int counter = 0;
+            while(goM){
+                n1 *= (moted1 > 249 && n1 > 0) || (n1 < 0 && moted1 < 5) ? -1 : 1;
+                n2 *= (moted2 > 249 && n2 > 0) || (n2 < 0 && moted2 < 5) ? -1 : 1;
+                n3 *= (moted3 > 249 && n3 > 0) || (n3 < 0 && moted3 < 5) ? -1 : 1;
+                moted1 += n1;
+                moted2 += n2;
+                moted3 += n3;
+                Color nn = new Color(moted1, moted2, moted3);
+                outputField.setForeground(nn);
+                if(counter < 47){
+                    counter++;
+                }else if(counter >= 47){
+                    counter = 0;
+                    output += "\n";
+                }
+                output += "" + (int) (Math.random() * 10);
+                System.out.println(moted1+ " " + moted2 + " " + moted3);
+                outputField.setText(output);
+                sleeper(10);
+            }
+        }
+    }
     public void sleeper(int millis){
         try {
             AltThread.sleep(millis);
@@ -307,13 +414,16 @@ public class Something extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton backB;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea outputField;
     private javax.swing.JToggleButton runningToggle;
+    private javax.swing.JButton typeMode;
     // End of variables declaration//GEN-END:variables
 }
